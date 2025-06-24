@@ -1,0 +1,80 @@
+extends Camera2D
+var canLeft
+var canRight
+var canUp
+var canDown
+
+var prevPos
+
+var limit
+var goodPos
+
+
+func _ready():
+	self.set_position(Vector2(0,0))
+	canLeft = true
+	canRight=true
+	canUp=true
+	canDown=true
+	limit = get_node("/root/Main/limits")
+	goodPos = [Vector2(0,0),Vector2(1333,0),Vector2(2666,0),Vector2(0,800),Vector2(1333,800)]
+
+func _process(delta):
+	#checkLimits()
+	if Input.is_action_just_pressed("right") && canRight == true:
+		prevPos = get_global_position()
+		self.transform = self.transform.translated(Vector2(1333,0))
+		checkLimits()
+	if Input.is_action_just_pressed("left") && canLeft == true:
+		prevPos = get_global_position()
+		self.transform = self.transform.translated(Vector2(-1333,0))
+		checkLimits()
+	if Input.is_action_just_pressed("up") && canUp == true:
+		prevPos = get_global_position()
+		self.transform = self.transform.translated(Vector2(0,-800))
+		checkLimits()
+	if Input.is_action_just_pressed("down") && canDown == true:
+		prevPos = get_global_position()
+		self.transform = self.transform.translated(Vector2(0,800))
+		checkLimits()
+
+
+func toggleMove():
+	canLeft != canLeft
+	canRight != canRight
+	canUp != canUp
+	canDown != canDown
+
+func checkLimits():
+	var pos = get_global_position()
+	#if find_child("Area2D").overlaps_area(limit) ==true:
+	if comparePos(pos) == false:
+		self.set_position(prevPos)
+		print("going back")
+	
+	#old stuff below
+	#if pos.x >= 2666:
+		#canRight = false
+		#if pos.y >= 800:
+			#canLeft = false
+	#if pos.x <= 0:
+		#canLeft = false
+	#if pos.y <= 0:
+		#canUp = false
+	#
+	#if !(pos.x >= 2666):
+		#canRight = true
+		#if !(pos.y >= 800):
+			#canLeft = true
+	#if !(pos.x <= 0):
+		#print("lefting")
+		#canLeft = true
+	#if !(pos.y <= 0):
+		#canUp = true
+
+func comparePos(coord):
+	var valid = false
+	for i in goodPos.size():
+		if coord.distance_to(goodPos[i]) ==0:
+			valid = true
+	return valid 
