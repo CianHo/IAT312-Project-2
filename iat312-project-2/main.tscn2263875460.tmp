@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfvk8xw6bvw3"]
+[gd_scene load_steps=14 format=3 uid="uid://bfvk8xw6bvw3"]
 
 [ext_resource type="Texture2D" uid="uid://bwni7admfc2uh" path="res://testBackgroundA.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dw0nibepmtod7" path="res://camera.gd" id="1_h2yge"]
@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bv3cud5pcl264" path="res://testBackgroundD.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dehyykeclqxes" path="res://testBackgroundE.png" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://ccmfxp7dtc0vm" path="res://sampleObject.tscn" id="7_272bh"]
-[ext_resource type="PackedScene" uid="uid://de3eh5tby5jf7" path="res://sample_object_2.tscn" id="8_5vw27"]
-[ext_resource type="PackedScene" uid="uid://c3x7sokau8bta" path="res://sample_object_3.tscn" id="9_kek77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(1152, 648)
@@ -106,9 +104,3 @@ polygon = PackedVector2Array(-1266, 1641, -1246, -900, 4053, -811, 3826, 597, 28
 
 [node name="Node2D" parent="." instance=ExtResource("7_272bh")]
 position = Vector2(224, -28)
-
-[node name="Node2D2" parent="." instance=ExtResource("8_5vw27")]
-position = Vector2(-85, 89)
-
-[node name="Node2D3" parent="." instance=ExtResource("9_kek77")]
-position = Vector2(1104, -52)

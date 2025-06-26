@@ -47,7 +47,6 @@ func toggleMove():
 
 func checkLimits():
 	var pos = get_global_position()
-	#if find_child("Area2D").overlaps_area(limit) ==true:
 	if comparePos(pos) == false:
 		self.set_position(prevPos)
 		print("going back")

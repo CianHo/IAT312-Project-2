@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://de3eh5tby5jf7"]
+
+[ext_resource type="Script" uid="uid://befv4hkrk3pbu" path="res://grabbable_base.gd" id="1_h03r7"]
+[ext_resource type="Texture2D" uid="uid://bwuq48wvtq5kt" path="res://icon.svg" id="2_pt71t"]
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_h03r7")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(44, 23, 4, 52, -48, 31, -26, -43, 20, -44, 47, -28)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pt71t")
+
+[connection signal="mouse_entered" from="." to="." method="hovered"]
+[connection signal="mouse_exited" from="." to="." method="ignored"]
