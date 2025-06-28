@@ -5,6 +5,7 @@ var canUp
 var canDown
 
 var prevPos
+var savedPos
 
 var limit
 var goodPos
@@ -17,26 +18,28 @@ func _ready():
 	canUp=true
 	canDown=true
 	limit = get_node("/root/Main/limits")
-	goodPos = [Vector2(0,0),Vector2(1333,0),Vector2(2666,0),Vector2(0,800),Vector2(1333,800)]
+	goodPos = [Vector2(0,0),Vector2(2500,0),Vector2(5000,0),Vector2(0,1500)]
 
 func _process(delta):
 	#checkLimits()
 	if Input.is_action_just_pressed("right") && canRight == true:
 		prevPos = get_global_position()
-		self.transform = self.transform.translated(Vector2(1333,0))
+		self.transform = self.transform.translated(Vector2(2500,0))
 		checkLimits()
 	if Input.is_action_just_pressed("left") && canLeft == true:
 		prevPos = get_global_position()
-		self.transform = self.transform.translated(Vector2(-1333,0))
+		self.transform = self.transform.translated(Vector2(-2500,0))
 		checkLimits()
 	if Input.is_action_just_pressed("up") && canUp == true:
 		prevPos = get_global_position()
-		self.transform = self.transform.translated(Vector2(0,-800))
+		self.transform = self.transform.translated(Vector2(0,-1500))
 		checkLimits()
 	if Input.is_action_just_pressed("down") && canDown == true:
 		prevPos = get_global_position()
-		self.transform = self.transform.translated(Vector2(0,800))
+		self.transform = self.transform.translated(Vector2(0,1500))
 		checkLimits()
+	if Input.is_action_just_pressed("tab"):
+		goToInventory()
 
 
 func toggleMove():
@@ -77,3 +80,11 @@ func comparePos(coord):
 		if coord.distance_to(goodPos[i]) ==0:
 			valid = true
 	return valid 
+
+func goToInventory():
+	var pos = get_global_position()
+	if pos.distance_to(Vector2(-5067.0,-5067.0)) !=0:
+		savedPos = pos
+		self.set_position(Vector2(-5067.0,-5067.0))
+	else:
+		self.set_position(savedPos)

@@ -8,10 +8,6 @@ func _ready():
 	moused = false
 	grabbed = false
 	#shape = self.find_child("CollisionShape2D")
-	#if (shape.mouse_entered.is_connected(hovered) == false):
-		#shape.mouse_entered.connect(hovered)
-	#if (shape.mouse_exited.is_connected(ignored) == false):
-		#shape.mouse_exited.connect(ignored)
 
 func _process(delta):
 	if moused == true:

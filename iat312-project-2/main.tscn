@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfvk8xw6bvw3"]
+[gd_scene load_steps=23 format=3 uid="uid://bfvk8xw6bvw3"]
 
 [ext_resource type="Texture2D" uid="uid://bwni7admfc2uh" path="res://testBackgroundA.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dw0nibepmtod7" path="res://camera.gd" id="1_h2yge"]
@@ -6,9 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://b12qmaql8sytt" path="res://testBackgroundC.png" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bv3cud5pcl264" path="res://testBackgroundD.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dehyykeclqxes" path="res://testBackgroundE.png" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://dqjeitrqa4ipg" path="res://nook.tscn" id="6_w48qg"]
+[ext_resource type="Texture2D" uid="uid://b6vbdvhn80fhu" path="res://book.png" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://ccmfxp7dtc0vm" path="res://sampleObject.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://de3eh5tby5jf7" path="res://sample_object_2.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://4ukvxdgbyyjm" path="res://inventory_slot.gd" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://c3x7sokau8bta" path="res://sample_object_3.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://c071wij4lyxvo" path="res://sample_collectable.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://c51n80b1r5rqp" path="res://book.tscn" id="13_ycdy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(1152, 648)
@@ -68,6 +73,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
+size = Vector2(174.1, 152.143)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dg77c"]
+font_color = Color(0, 0, 0, 1)
+
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -80,25 +91,114 @@ script = ExtResource("1_h2yge")
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.667, 1.667)
 sprite_frames = SubResource("SpriteFrames_1bvp3")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(1333, 0)
+position = Vector2(2500, 0)
+scale = Vector2(1.66, 1.66)
 sprite_frames = SubResource("SpriteFrames_lquwl")
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
-position = Vector2(2666, 0)
+position = Vector2(5000, 0)
+scale = Vector2(1.667, 1.667)
 sprite_frames = SubResource("SpriteFrames_7mycd")
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 800)
+position = Vector2(0, 1500)
+scale = Vector2(1.667, 1.667)
 sprite_frames = SubResource("SpriteFrames_5vw27")
 
+[node name="Node" type="Node" parent="AnimatedSprite2D4"]
+
+[node name="Nook" parent="AnimatedSprite2D4/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(-177, 1269)
+
+[node name="Nook2" parent="AnimatedSprite2D4/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(-216, 1881)
+
 [node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
-position = Vector2(1333, 800)
+position = Vector2(-5067, -5067)
+scale = Vector2(1.667, 1.667)
 sprite_frames = SubResource("SpriteFrames_kek77")
 
+[node name="Inventory" type="Sprite2D" parent="AnimatedSprite2D5"]
+scale = Vector2(0.519093, 0.519093)
+texture = ExtResource("7_4c57u")
+
+[node name="Slot1" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-416.027, -350.156)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot1"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Slot2" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-176.812, -350.156)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot2"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Slot3" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-416.027, -154.661)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot3"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Slot4" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-176.812, -154.661)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot4"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Slot5" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-416.027, 36.9802)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot5"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Slot6" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-176.812, 36.9802)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot6"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Slot7" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-416.027, 232.475)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot7"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Slot8" type="Area2D" parent="AnimatedSprite2D5/Inventory"]
+position = Vector2(-176.812, 232.475)
+script = ExtResource("8_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D5/Inventory/Slot8"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="Label" type="Label" parent="AnimatedSprite2D5"]
+offset_left = 22.0
+offset_top = -214.0
+offset_right = 268.0
+offset_bottom = 159.0
+label_settings = SubResource("LabelSettings_dg77c")
+
 [node name="limits" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="limits"]
 build_mode = 1
@@ -111,4 +211,11 @@ position = Vector2(224, -28)
 position = Vector2(-85, 89)
 
 [node name="Node2D3" parent="." instance=ExtResource("9_kek77")]
-position = Vector2(1104, -52)
+position = Vector2(2286, -273)
+
+[node name="Collectable" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(418, 115)
+
+[node name="Node2D4" parent="." instance=ExtResource("13_ycdy4")]
+position = Vector2(426, 1565)
+homePos = Vector2(426, 1565)
