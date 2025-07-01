@@ -1,0 +1,115 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgarnrnaxdx3h"]
+
+[ext_resource type="Script" uid="uid://ivhkqkvfrkau" path="res://number_lock.gd" id="1_g0w81"]
+[ext_resource type="LabelSettings" uid="uid://cyq4wx3qqk3ea" path="res://new_label_settings.tres" id="2_xjiua"]
+
+[node name="numberLock" type="Sprite2D"]
+script = ExtResource("1_g0w81")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -28.0
+offset_top = -12.0
+offset_right = -18.0
+offset_bottom = 11.0
+text = "0"
+label_settings = ExtResource("2_xjiua")
+metadata/_edit_use_anchors_ = true
+
+[node name="increase" type="Button" parent="Label"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 8.0
+offset_bottom = 6.0
+
+[node name="decrease" type="Button" parent="Label"]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 8.0
+offset_bottom = 26.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -13.0
+offset_top = -12.0
+offset_right = -3.0
+offset_bottom = 11.0
+text = "0"
+label_settings = ExtResource("2_xjiua")
+metadata/_edit_use_anchors_ = true
+
+[node name="increase" type="Button" parent="Label2"]
+offset_top = -2.0
+offset_right = 8.0
+offset_bottom = 6.0
+
+[node name="decrease" type="Button" parent="Label2"]
+offset_top = 18.0
+offset_right = 8.0
+offset_bottom = 26.0
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 2.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 11.0
+text = "0"
+label_settings = ExtResource("2_xjiua")
+metadata/_edit_use_anchors_ = true
+
+[node name="increase" type="Button" parent="Label3"]
+offset_top = -2.0
+offset_right = 8.0
+offset_bottom = 6.0
+
+[node name="decrease" type="Button" parent="Label3"]
+offset_top = 18.0
+offset_right = 8.0
+offset_bottom = 26.0
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 17.0
+offset_top = -12.0
+offset_right = 27.0
+offset_bottom = 11.0
+text = "0"
+label_settings = ExtResource("2_xjiua")
+metadata/_edit_use_anchors_ = true
+
+[node name="increase" type="Button" parent="Label4"]
+offset_top = -2.0
+offset_right = 8.0
+offset_bottom = 6.0
+
+[node name="decrease" type="Button" parent="Label4"]
+offset_top = 18.0
+offset_right = 8.0
+offset_bottom = 26.0
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 30.0
+offset_top = -12.0
+offset_right = 40.0
+offset_bottom = 11.0
+text = "0"
+label_settings = ExtResource("2_xjiua")
+metadata/_edit_use_anchors_ = true
+
+[node name="increase" type="Button" parent="Label5"]
+offset_top = -2.0
+offset_right = 8.0
+offset_bottom = 6.0
+
+[node name="decrease" type="Button" parent="Label5"]
+offset_top = 18.0
+offset_right = 8.0
+offset_bottom = 26.0
+
+[connection signal="pressed" from="Label/increase" to="." method="incFirst"]
+[connection signal="pressed" from="Label/decrease" to="." method="decFirst"]
+[connection signal="pressed" from="Label2/increase" to="." method="incSecond"]
+[connection signal="pressed" from="Label2/decrease" to="." method="decSecond"]
+[connection signal="pressed" from="Label3/increase" to="." method="incThird"]
+[connection signal="pressed" from="Label3/decrease" to="." method="decThird"]
+[connection signal="pressed" from="Label4/increase" to="." method="incFourth"]
+[connection signal="pressed" from="Label4/decrease" to="." method="decFourth"]
+[connection signal="pressed" from="Label5/increase" to="." method="incFourth"]
+[connection signal="pressed" from="Label5/decrease" to="." method="decFourth"]

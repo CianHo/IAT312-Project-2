@@ -18,7 +18,7 @@ func _ready():
 	canUp=true
 	canDown=true
 	limit = get_node("/root/Main/limits")
-	goodPos = [Vector2(0,0),Vector2(2500,0),Vector2(5000,0),Vector2(0,1500)]
+	goodPos = [Vector2(0,0),Vector2(2500,0)]
 
 func _process(delta):
 	#checkLimits()

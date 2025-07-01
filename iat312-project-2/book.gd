@@ -1,6 +1,7 @@
 extends "res://grabbable_base.gd"
 
 @export var homePos : Vector2
+@export var num : int
 var nooks
 var needsResetting
 var currNook
@@ -17,12 +18,13 @@ func _process(delta):
 		for i in nooks.size():
 			if grabbed == false && self.overlaps_area(nooks[i]) && nooks[i].filled == false:
 				homePos = nooks[i].get_global_position()
-				nooks[i].fill()
 				if needsResetting == false:
 					needsResetting = true
 					currNook = nooks[i]
+					nooks[i].fill()
 				elif needsResetting == true:
 					currNook.empty()
 					currNook = nooks[i]
+					nooks[i].fill()
 		if grabbed == false && self.get_global_position().distance_to(homePos) != 0:
 			self.set_global_position(homePos)

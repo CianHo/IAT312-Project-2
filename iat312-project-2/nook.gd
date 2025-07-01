@@ -1,6 +1,7 @@
 extends Area2D
 
 var filled
+@export var answer : int
 
 signal check
 

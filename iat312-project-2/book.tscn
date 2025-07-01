@@ -6,3 +6,4 @@
 [node name="Book" instance=ExtResource("1_y0hms")]
 script = ExtResource("2_fijbg")
 homePos = Vector2(0, 0)
+num = 0
