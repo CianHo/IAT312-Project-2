@@ -1,12 +1,12 @@
 extends Area2D
 
-var filled
+@export var filled : bool
 @export var answer : int
 
 signal check
 
 func _ready():
-	filled = false
+	pass
 
 
 func fill():

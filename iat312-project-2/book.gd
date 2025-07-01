@@ -4,12 +4,12 @@ extends "res://grabbable_base.gd"
 @export var num : int
 var nooks
 var needsResetting
-var currNook
+@export var currNook : Node
 
 func _ready():
 	super()
-	nooks = get_node("/root/Main/AnimatedSprite2D4/Node").get_children()
-	needsResetting = false
+	nooks = get_node("/root/Main/Shelf/Node").get_children()
+	needsResetting = true
 
 
 func _process(delta):

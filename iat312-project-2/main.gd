@@ -5,7 +5,7 @@ var books
 var correctBooks
 
 func _ready():
-	nooks = get_node("/root/Main/AnimatedSprite2D4/Node").get_children()
+	nooks = get_node("/root/Main/Shelf/Node").get_children()
 	books = get_node("/root/Main/Books").get_children()
 	correctBooks = 0
 

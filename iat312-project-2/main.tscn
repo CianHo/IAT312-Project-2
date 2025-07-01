@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bfvk8xw6bvw3"]
+[gd_scene load_steps=40 format=3 uid="uid://bfvk8xw6bvw3"]
 
 [ext_resource type="Script" uid="uid://dw0nibepmtod7" path="res://camera.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://bieemgjnkw10f" path="res://main.gd" id="1_vivmo"]
@@ -6,20 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://4xjsx0wxacmt" path="res://office.png" id="4_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://bv3cud5pcl264" path="res://testBackgroundD.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bfbiipwk370p1" path="res://desk.png" id="5_074og"]
-[ext_resource type="Script" uid="uid://ca4xrckivabck" path="res://highlighter.gd" id="6_cegan"]
+[ext_resource type="PackedScene" uid="uid://cu7btxa4cktds" path="res://highlighter.tscn" id="6_82xsv"]
+[ext_resource type="Script" uid="uid://bubbds5lyjhof" path="res://shelf_highlight.gd" id="6_ryguw"]
 [ext_resource type="PackedScene" uid="uid://dqjeitrqa4ipg" path="res://nook.tscn" id="6_w48qg"]
 [ext_resource type="PackedScene" uid="uid://ccmfxp7dtc0vm" path="res://sampleObject.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://bk6cpfmvebwea" path="res://pc_highlight.gd" id="7_getpj"]
 [ext_resource type="PackedScene" uid="uid://de3eh5tby5jf7" path="res://sample_object_2.tscn" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://4ukvxdgbyyjm" path="res://inventory_slot.gd" id="8_efxa6"]
 [ext_resource type="Texture2D" uid="uid://bxjgmfcffg87p" path="res://inventory.png" id="8_vivmo"]
 [ext_resource type="PackedScene" uid="uid://c3x7sokau8bta" path="res://sample_object_3.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://c071wij4lyxvo" path="res://sample_collectable.tscn" id="12_dg77c"]
-[ext_resource type="PackedScene" uid="uid://c51n80b1r5rqp" path="res://book.tscn" id="13_ycdy4"]
+[ext_resource type="Script" uid="uid://fpyjcadvlcjm" path="res://book.gd" id="16_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cgarnrnaxdx3h" path="res://number_lock.tscn" id="16_2cqfq"]
-[ext_resource type="Script" uid="uid://dncnox310pmn1" path="res://button_to_office.gd" id="16_074og"]
 [ext_resource type="Texture2D" uid="uid://b0lc03p70arbx" path="res://arrow.png" id="16_yaehf"]
-[ext_resource type="Script" uid="uid://bms4t1x4b7gnp" path="res://button_to_desk.gd" id="18_074og"]
-[ext_resource type="Script" uid="uid://da0ptbbur2dlu" path="res://button_to_hall.gd" id="20_82xsv"]
+[ext_resource type="Texture2D" uid="uid://btucyy1r1ey23" path="res://book1.png" id="17_lswn8"]
+[ext_resource type="Script" uid="uid://csltpfsdacq6t" path="res://move_button.gd" id="18_d13ii"]
+[ext_resource type="Texture2D" uid="uid://sygcjnq1aang" path="res://shelf.png" id="21_getpj"]
+[ext_resource type="Texture2D" uid="uid://5jmeotokeg0t" path="res://book3.png" id="22_lswn8"]
+[ext_resource type="Texture2D" uid="uid://dyyjcf0k1f1at" path="res://pc.png" id="22_ryguw"]
+[ext_resource type="Texture2D" uid="uid://jvkex1huahh" path="res://book4.png" id="22_xuqvo"]
+[ext_resource type="Script" uid="uid://bbatbhn4pmdmr" path="res://picture_highlight.gd" id="23_1u8w0"]
+[ext_resource type="Texture2D" uid="uid://dn07ct0hrq5l" path="res://picture.png" id="24_0odxb"]
+[ext_resource type="Texture2D" uid="uid://cu78v3m6c58ne" path="res://book5.png" id="24_qsp4k"]
+[ext_resource type="Texture2D" uid="uid://xjhoiw1v11sg" path="res://book space.png" id="25_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://ds0hjqvpee25e" path="res://book2.png" id="25_kq58d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(1152, 648)
@@ -100,6 +110,9 @@ size = Vector2(174.1, 152.143)
 [sub_resource type="LabelSettings" id="LabelSettings_dg77c"]
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
+size = Vector2(22, 157)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_vivmo")
 
@@ -119,48 +132,22 @@ sprite_frames = SubResource("SpriteFrames_1bvp3")
 position = Vector2(2500, 0)
 sprite_frames = SubResource("SpriteFrames_lquwl")
 
+[node name="Shelf" parent="Office" instance=ExtResource("6_82xsv")]
+position = Vector2(190, -76)
+scale = Vector2(0.7, 0.2)
+script = ExtResource("6_ryguw")
+
 [node name="Desk" type="AnimatedSprite2D" parent="."]
 position = Vector2(6000, 0)
 sprite_frames = SubResource("SpriteFrames_7mycd")
 
-[node name="Area2D" type="Area2D" parent="Desk"]
-script = ExtResource("6_cegan")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Desk/Area2D"]
-polygon = PackedVector2Array(-292, -77, -316, 26, -62, 24, -63, -76, -62, -200, -308, -201)
-
-[node name="ColorRect" type="ColorRect" parent="Desk/Area2D"]
-offset_left = -307.0
-offset_top = -201.0
-offset_right = -62.0
-offset_bottom = 25.0
-color = Color(0.666569, 0.666569, 0.666569, 0.513726)
+[node name="PC Highlight" parent="Desk" instance=ExtResource("6_82xsv")]
+script = ExtResource("7_getpj")
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1500)
 scale = Vector2(1.667, 1.667)
 sprite_frames = SubResource("SpriteFrames_5vw27")
-
-[node name="Node" type="Node" parent="AnimatedSprite2D4"]
-
-[node name="Nook" parent="AnimatedSprite2D4/Node" instance=ExtResource("6_w48qg")]
-position = Vector2(-597, 1377)
-
-[node name="Nook2" parent="AnimatedSprite2D4/Node" instance=ExtResource("6_w48qg")]
-position = Vector2(-413, 1381)
-answer = 1
-
-[node name="Nook3" parent="AnimatedSprite2D4/Node" instance=ExtResource("6_w48qg")]
-position = Vector2(-219, 1383)
-answer = 2
-
-[node name="Nook4" parent="AnimatedSprite2D4/Node" instance=ExtResource("6_w48qg")]
-position = Vector2(-55, 1388)
-answer = 3
-
-[node name="Nook5" parent="AnimatedSprite2D4/Node" instance=ExtResource("6_w48qg")]
-position = Vector2(177, 1400)
-answer = 4
 
 [node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
 position = Vector2(-5067, -5049)
@@ -252,34 +239,8 @@ position = Vector2(-526, -1038)
 [node name="Collectable" parent="." instance=ExtResource("12_dg77c")]
 position = Vector2(-580, -574)
 
-[node name="Books" type="Node" parent="."]
-
-[node name="Node2D4" parent="Books" instance=ExtResource("13_ycdy4")]
-position = Vector2(-595, 1598)
-homePos = Vector2(-595, 1598)
-
-[node name="Node2D5" parent="Books" instance=ExtResource("13_ycdy4")]
-position = Vector2(-414, 1603)
-homePos = Vector2(-414, 1603)
-num = 1
-
-[node name="Node2D6" parent="Books" instance=ExtResource("13_ycdy4")]
-position = Vector2(-224, 1615)
-homePos = Vector2(-224, 1615)
-num = 2
-
-[node name="Node2D7" parent="Books" instance=ExtResource("13_ycdy4")]
-position = Vector2(-43, 1600)
-homePos = Vector2(-43, 1600)
-num = 3
-
-[node name="Node2D8" parent="Books" instance=ExtResource("13_ycdy4")]
-position = Vector2(177, 1589)
-homePos = Vector2(177, 1589)
-num = 4
-
 [node name="numberLock" parent="." instance=ExtResource("16_2cqfq")]
-position = Vector2(2738, 4)
+position = Vector2(3438, -255)
 scale = Vector2(4, 4)
 
 [node name="Button to Office" type="Button" parent="."]
@@ -287,7 +248,8 @@ offset_left = 277.0
 offset_top = -24.0
 offset_right = 326.0
 offset_bottom = 25.0
-script = ExtResource("16_074og")
+script = ExtResource("18_d13ii")
+dest = Vector2(2500, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Button to Office"]
 position = Vector2(26, 25)
@@ -300,7 +262,8 @@ offset_left = 2521.0
 offset_top = 121.0
 offset_right = 2570.0
 offset_bottom = 170.0
-script = ExtResource("18_074og")
+script = ExtResource("18_d13ii")
+dest = Vector2(6000, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Button to Desk"]
 position = Vector2(26, 25)
@@ -312,7 +275,8 @@ offset_left = 5979.0
 offset_top = 157.0
 offset_right = 6028.0
 offset_bottom = 206.0
-script = ExtResource("16_074og")
+script = ExtResource("18_d13ii")
+dest = Vector2(2500, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Button From Desk"]
 position = Vector2(26, 25)
@@ -325,7 +289,7 @@ offset_left = 2095.0
 offset_top = -24.0
 offset_right = 2144.0
 offset_bottom = 25.0
-script = ExtResource("20_82xsv")
+script = ExtResource("18_d13ii")
 
 [node name="Sprite2D" type="Sprite2D" parent="Button to Hall"]
 position = Vector2(26, 25)
@@ -333,14 +297,223 @@ rotation = 4.71239
 scale = Vector2(0.085, 0.085)
 texture = ExtResource("16_yaehf")
 
-[connection signal="mouse_entered" from="Desk/Area2D" to="Desk/Area2D" method="showGrey"]
-[connection signal="mouse_exited" from="Desk/Area2D" to="Desk/Area2D" method="hideGrey"]
-[connection signal="check" from="AnimatedSprite2D4/Node/Nook" to="." method="bookshelfSolve"]
-[connection signal="check" from="AnimatedSprite2D4/Node/Nook2" to="." method="bookshelfSolve"]
-[connection signal="check" from="AnimatedSprite2D4/Node/Nook3" to="." method="bookshelfSolve"]
-[connection signal="check" from="AnimatedSprite2D4/Node/Nook4" to="." method="bookshelfSolve"]
-[connection signal="check" from="AnimatedSprite2D4/Node/Nook5" to="." method="bookshelfSolve"]
+[node name="PC" type="Sprite2D" parent="."]
+position = Vector2(6000, 1500)
+texture = ExtResource("22_ryguw")
+
+[node name="Button to Desk2" type="Button" parent="."]
+offset_left = 5994.0
+offset_top = 1697.0
+offset_right = 6043.0
+offset_bottom = 1746.0
+script = ExtResource("18_d13ii")
+dest = Vector2(6000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Button to Desk2"]
+position = Vector2(26, 25)
+rotation = 3.14159
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("16_yaehf")
+
+[node name="Button to Office2" type="Button" parent="."]
+z_index = 1
+offset_left = 2487.0
+offset_top = -1320.0
+offset_right = 2536.0
+offset_bottom = -1271.0
+script = ExtResource("18_d13ii")
+dest = Vector2(2500, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Button to Office2"]
+position = Vector2(26, 25)
+rotation = 3.14159
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("16_yaehf")
+
+[node name="Books" type="Node" parent="."]
+
+[node name="Book 1" type="Area2D" parent="Books" node_paths=PackedStringArray("currNook")]
+z_index = 1
+position = Vector2(2322, -1619)
+script = ExtResource("16_0odxb")
+homePos = Vector2(2321, -1618)
+num = 2
+currNook = NodePath("../../Shelf/Node/Nook")
+
+[node name="Sprite2D" type="Sprite2D" parent="Books/Book 1"]
+scale = Vector2(0.22, 0.215)
+texture = ExtResource("22_lswn8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Books/Book 1"]
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="Book 2" type="Area2D" parent="Books" node_paths=PackedStringArray("currNook")]
+z_index = 1
+position = Vector2(2365, -1617)
+script = ExtResource("16_0odxb")
+homePos = Vector2(2364, -1618)
+num = 3
+currNook = NodePath("../../Shelf/Node/Nook2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Books/Book 2"]
+scale = Vector2(0.22, 0.215)
+texture = ExtResource("22_xuqvo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Books/Book 2"]
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="Book 3" type="Area2D" parent="Books" node_paths=PackedStringArray("currNook")]
+z_index = 1
+position = Vector2(2406, -1619)
+script = ExtResource("16_0odxb")
+homePos = Vector2(2405, -1618)
+currNook = NodePath("../../Shelf/Node/Nook3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Books/Book 3"]
+scale = Vector2(0.22, 0.215)
+texture = ExtResource("17_lswn8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Books/Book 3"]
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="Book 4" type="Area2D" parent="Books" node_paths=PackedStringArray("currNook")]
+z_index = 1
+position = Vector2(2446, -1618)
+script = ExtResource("16_0odxb")
+homePos = Vector2(2445, -1618)
+num = 4
+currNook = NodePath("../../Shelf/Node/Nook4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Books/Book 4"]
+scale = Vector2(0.22, 0.215)
+texture = ExtResource("24_qsp4k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Books/Book 4"]
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="Book 5" type="Area2D" parent="Books" node_paths=PackedStringArray("currNook")]
+z_index = 1
+position = Vector2(2765, -1617)
+script = ExtResource("16_0odxb")
+homePos = Vector2(2764, -1619)
+num = 1
+currNook = NodePath("../../Shelf/Node/Nook6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Books/Book 5"]
+scale = Vector2(0.22, 0.215)
+texture = ExtResource("25_kq58d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Books/Book 5"]
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="Shelf" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(2500, -1500)
+texture = ExtResource("21_getpj")
+
+[node name="Node" type="Node" parent="Shelf"]
+
+[node name="Nook" parent="Shelf/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(2321, -1618)
+filled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Shelf/Node/Nook"]
+position = Vector2(0.500003, 0.749986)
+scale = Vector2(0.317307, 0.216759)
+texture = ExtResource("25_a6jrf")
+
+[node name="Nook2" parent="Shelf/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(2364, -1618)
+filled = true
+answer = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Shelf/Node/Nook2"]
+position = Vector2(0.500003, 0.749986)
+scale = Vector2(0.317307, 0.216759)
+texture = ExtResource("25_a6jrf")
+
+[node name="Nook3" parent="Shelf/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(2405, -1618)
+filled = true
+answer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Shelf/Node/Nook3"]
+position = Vector2(0.500003, 0.749986)
+scale = Vector2(0.317307, 0.216759)
+texture = ExtResource("25_a6jrf")
+
+[node name="Nook4" parent="Shelf/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(2445, -1618)
+filled = true
+answer = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Shelf/Node/Nook4"]
+position = Vector2(0.500003, 0.749986)
+scale = Vector2(0.317307, 0.216759)
+texture = ExtResource("25_a6jrf")
+
+[node name="Nook5" parent="Shelf/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(2485, -1618)
+answer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Shelf/Node/Nook5"]
+position = Vector2(0.500003, 0.749986)
+scale = Vector2(0.317307, 0.216759)
+texture = ExtResource("25_a6jrf")
+
+[node name="Nook6" parent="Shelf/Node" instance=ExtResource("6_w48qg")]
+position = Vector2(2764, -1619)
+filled = true
+answer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Shelf/Node/Nook6"]
+position = Vector2(0.500003, 0.749986)
+scale = Vector2(0.317307, 0.216759)
+texture = ExtResource("25_a6jrf")
+
+[node name="Picture Highlight" parent="." instance=ExtResource("6_82xsv")]
+position = Vector2(2242, -1355)
+scale = Vector2(0.4, 0.6)
+script = ExtResource("23_1u8w0")
+
+[node name="Picture" type="Sprite2D" parent="."]
+position = Vector2(2500, -3000)
+texture = ExtResource("24_0odxb")
+
+[node name="Button to Shelf" type="Button" parent="."]
+offset_left = 2484.0
+offset_top = -2815.0
+offset_right = 2533.0
+offset_bottom = -2766.0
+script = ExtResource("18_d13ii")
+dest = Vector2(2500, -1500)
+
+[node name="Sprite2D" type="Sprite2D" parent="Button to Shelf"]
+position = Vector2(26, 25)
+rotation = 3.14159
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("16_yaehf")
+
 [connection signal="pressed" from="Button to Office" to="Button to Office" method="travel"]
 [connection signal="pressed" from="Button to Desk" to="Button to Desk" method="travel"]
 [connection signal="pressed" from="Button From Desk" to="Button From Desk" method="travel"]
 [connection signal="pressed" from="Button to Hall" to="Button to Hall" method="travel"]
+[connection signal="pressed" from="Button to Desk2" to="Button to Desk2" method="travel"]
+[connection signal="pressed" from="Button to Office2" to="Button to Office2" method="travel"]
+[connection signal="mouse_entered" from="Books/Book 1" to="Books/Book 1" method="hovered"]
+[connection signal="mouse_exited" from="Books/Book 1" to="Books/Book 1" method="ignored"]
+[connection signal="mouse_entered" from="Books/Book 2" to="Books/Book 2" method="hovered"]
+[connection signal="mouse_exited" from="Books/Book 2" to="Books/Book 2" method="ignored"]
+[connection signal="mouse_entered" from="Books/Book 3" to="Books/Book 3" method="hovered"]
+[connection signal="mouse_exited" from="Books/Book 3" to="Books/Book 3" method="ignored"]
+[connection signal="mouse_entered" from="Books/Book 4" to="Books/Book 4" method="hovered"]
+[connection signal="mouse_exited" from="Books/Book 4" to="Books/Book 4" method="ignored"]
+[connection signal="mouse_entered" from="Books/Book 5" to="Books/Book 5" method="hovered"]
+[connection signal="mouse_exited" from="Books/Book 5" to="Books/Book 5" method="ignored"]
+[connection signal="check" from="Shelf/Node/Nook" to="." method="bookshelfSolve"]
+[connection signal="check" from="Shelf/Node/Nook2" to="." method="bookshelfSolve"]
+[connection signal="check" from="Shelf/Node/Nook3" to="." method="bookshelfSolve"]
+[connection signal="check" from="Shelf/Node/Nook4" to="." method="bookshelfSolve"]
+[connection signal="check" from="Shelf/Node/Nook5" to="." method="bookshelfSolve"]
+[connection signal="check" from="Shelf/Node/Nook6" to="." method="bookshelfSolve"]
+[connection signal="pressed" from="Button to Shelf" to="Button to Shelf" method="travel"]
