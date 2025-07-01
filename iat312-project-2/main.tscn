@@ -1,10 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://bfvk8xw6bvw3"]
+[gd_scene load_steps=41 format=3 uid="uid://bfvk8xw6bvw3"]
 
 [ext_resource type="Script" uid="uid://dw0nibepmtod7" path="res://camera.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://bieemgjnkw10f" path="res://main.gd" id="1_vivmo"]
 [ext_resource type="Texture2D" uid="uid://c0ahsbexyeoub" path="res://Hallway.png" id="3_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://4xjsx0wxacmt" path="res://office.png" id="4_2cqfq"]
-[ext_resource type="Texture2D" uid="uid://bv3cud5pcl264" path="res://testBackgroundD.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bfbiipwk370p1" path="res://desk.png" id="5_074og"]
 [ext_resource type="PackedScene" uid="uid://cu7btxa4cktds" path="res://highlighter.tscn" id="6_82xsv"]
 [ext_resource type="Script" uid="uid://bubbds5lyjhof" path="res://shelf_highlight.gd" id="6_ryguw"]
@@ -15,6 +14,7 @@
 [ext_resource type="Script" uid="uid://4ukvxdgbyyjm" path="res://inventory_slot.gd" id="8_efxa6"]
 [ext_resource type="Texture2D" uid="uid://bxjgmfcffg87p" path="res://inventory.png" id="8_vivmo"]
 [ext_resource type="PackedScene" uid="uid://c3x7sokau8bta" path="res://sample_object_3.tscn" id="9_kek77"]
+[ext_resource type="Script" uid="uid://tulyb6uahcxe" path="res://box_highlight.gd" id="9_kq58d"]
 [ext_resource type="PackedScene" uid="uid://c071wij4lyxvo" path="res://sample_collectable.tscn" id="12_dg77c"]
 [ext_resource type="Script" uid="uid://fpyjcadvlcjm" path="res://book.gd" id="16_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cgarnrnaxdx3h" path="res://number_lock.tscn" id="16_2cqfq"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://cu78v3m6c58ne" path="res://book5.png" id="24_qsp4k"]
 [ext_resource type="Texture2D" uid="uid://xjhoiw1v11sg" path="res://book space.png" id="25_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://ds0hjqvpee25e" path="res://book2.png" id="25_kq58d"]
+[ext_resource type="Texture2D" uid="uid://e0snytvvbefp" path="res://box.png" id="31_seu75"]
+[ext_resource type="Script" uid="uid://d3sopo626iryv" path="res://lock_highlight.gd" id="32_htxhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(1152, 648)
@@ -79,17 +81,6 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"lightPC",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5vw27"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_7mycd")
-}],
-"loop": true,
-"name": &"default",
 "speed": 5.0
 }]
 
@@ -144,10 +135,10 @@ sprite_frames = SubResource("SpriteFrames_7mycd")
 [node name="PC Highlight" parent="Desk" instance=ExtResource("6_82xsv")]
 script = ExtResource("7_getpj")
 
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 1500)
-scale = Vector2(1.667, 1.667)
-sprite_frames = SubResource("SpriteFrames_5vw27")
+[node name="Box Highlight" parent="Desk" instance=ExtResource("6_82xsv")]
+position = Vector2(361, 69)
+scale = Vector2(0.5, 0.6)
+script = ExtResource("9_kq58d")
 
 [node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
 position = Vector2(-5067, -5049)
@@ -241,7 +232,6 @@ position = Vector2(-580, -574)
 
 [node name="numberLock" parent="." instance=ExtResource("16_2cqfq")]
 position = Vector2(3438, -255)
-scale = Vector2(4, 4)
 
 [node name="Button to Office" type="Button" parent="."]
 offset_left = 277.0
@@ -494,6 +484,53 @@ rotation = 3.14159
 scale = Vector2(0.085, 0.085)
 texture = ExtResource("16_yaehf")
 
+[node name="Box" type="Sprite2D" parent="."]
+position = Vector2(7000, 0)
+texture = ExtResource("31_seu75")
+
+[node name="Lock Highlight" parent="Box" instance=ExtResource("6_82xsv")]
+z_index = 2
+position = Vector2(-37, 19)
+scale = Vector2(0.08, 0.23)
+script = ExtResource("32_htxhm")
+
+[node name="Box2" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(8000, 0)
+texture = ExtResource("31_seu75")
+
+[node name="numberLock" parent="Box2" instance=ExtResource("16_2cqfq")]
+z_index = 1
+position = Vector2(-59, -18)
+
+[node name="Button From Box2" type="Button" parent="."]
+offset_left = 6972.0
+offset_top = 157.0
+offset_right = 7021.0
+offset_bottom = 206.0
+script = ExtResource("18_d13ii")
+dest = Vector2(6000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Button From Box2"]
+position = Vector2(26, 25)
+rotation = 3.14159
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("16_yaehf")
+
+[node name="Button From Lock" type="Button" parent="."]
+offset_left = 7994.0
+offset_top = 157.0
+offset_right = 8043.0
+offset_bottom = 206.0
+script = ExtResource("18_d13ii")
+dest = Vector2(7000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Button From Lock"]
+position = Vector2(26, 25)
+rotation = 3.14159
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("16_yaehf")
+
 [connection signal="pressed" from="Button to Office" to="Button to Office" method="travel"]
 [connection signal="pressed" from="Button to Desk" to="Button to Desk" method="travel"]
 [connection signal="pressed" from="Button From Desk" to="Button From Desk" method="travel"]
@@ -517,3 +554,5 @@ texture = ExtResource("16_yaehf")
 [connection signal="check" from="Shelf/Node/Nook5" to="." method="bookshelfSolve"]
 [connection signal="check" from="Shelf/Node/Nook6" to="." method="bookshelfSolve"]
 [connection signal="pressed" from="Button to Shelf" to="Button to Shelf" method="travel"]
+[connection signal="pressed" from="Button From Box2" to="Button From Box2" method="travel"]
+[connection signal="pressed" from="Button From Lock" to="Button From Lock" method="travel"]
